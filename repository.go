@@ -1259,7 +1259,7 @@ func (r *Repository) TagObjects() (*object.TagIter, error) {
 		return nil, err
 	}
 
-	return object.NewTagIter(r.Storer, iter), nil
+return object.NewTagIter(r.Storer, iter), nil
 }
 
 // Object returns an Object with the given hash. If not found

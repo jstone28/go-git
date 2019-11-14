@@ -28,6 +28,7 @@ import (
 var (
 	ErrWorktreeNotClean     = errors.New("worktree is not clean")
 	ErrSubmoduleNotFound    = errors.New("submodule not found")
+	ErrSubmoduleAlreadyExists    = errors.New("submodule already exists")
 	ErrUnstagedChanges      = errors.New("worktree contains unstaged changes")
 	ErrGitModulesSymlink    = errors.New(gitmodulesFile + " is a symlink")
 	ErrNonFastForwardUpdate = errors.New("non-fast-forward update")
@@ -632,6 +633,20 @@ func (w *Worktree) getTreeFromCommitHash(commit plumbing.Hash) (*object.Tree, er
 var fillSystemInfo func(e *index.Entry, sys interface{})
 
 const gitmodulesFile = ".gitmodules"
+
+// AddSubmodule adds a submodule to the current tree
+func (w *Worktree) AddSubmodule(addSubmodule *config.Submodule) (*Submodule, error) {
+	_, err := w.Submodule(addSubmodule.Name)
+	if err != ErrSubmoduleNotFound {
+		return nil, ErrSubmoduleAlreadyExists
+	}
+
+	c, err := w.r.Config()
+
+	newSubmodule := w.newSubmodule(addSubmodule, c.Submodules[addSubmodule.Name])
+
+	return newSubmodule, nil
+}
 
 // Submodule returns the submodule with the given name
 func (w *Worktree) Submodule(name string) (*Submodule, error) {

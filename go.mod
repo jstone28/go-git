@@ -19,11 +19,14 @@ require (
 	github.com/stretchr/objx v0.2.0 // indirect
 	github.com/xanzy/ssh-agent v0.2.1
 	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
+	golang.org/x/lint v0.0.0-20190930215403-16217165b5de // indirect
 	golang.org/x/net v0.0.0-20190724013045-ca1201d0de80
 	golang.org/x/text v0.3.2
-	golang.org/x/tools v0.0.0-20190729092621-ff9f1409240a // indirect
+	golang.org/x/tools v0.0.0-20191113191852-77e3bb0ad9e7 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127
 	gopkg.in/src-d/go-billy.v4 v4.3.2
 	gopkg.in/src-d/go-git-fixtures.v3 v3.5.0
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 )
+
+go 1.13
